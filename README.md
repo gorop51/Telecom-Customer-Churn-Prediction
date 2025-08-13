@@ -1,8 +1,8 @@
-\# 📱 Telecom Customer Churn Prediction
+# 📱 Telecom Customer Churn Prediction
 
 
 
-\## 📌 Project Overview
+## 📌 Project Overview
 
 
 
@@ -10,19 +10,19 @@ Telecom operator "TeleDom" aims to reduce customer churn by offering personalize
 
 
 
-\## 🎯 Objective
+## 🎯 Objective
 
 
 
 Create a model that accurately predicts customer churn with:
 
-\- ROC-AUC ≥ 0.85
+- ROC-AUC ≥ 0.85
 
-\- High recall (prioritizing identifying potential churners over false positives)
+- High recall (prioritizing identifying potential churners over false positives)
 
 
 
-\## 📊 Dataset Description
+## 📊 Dataset Description
 
 
 
@@ -30,7 +30,7 @@ Four CSV files containing customer information as of February 1, 2020:
 
 
 
-1\. \*\*contract\_new.csv\*\* - contract details:
+1. **contract_new.csv** - contract details:
 
 &nbsp;  - `customerID`, `BeginDate`, `EndDate` (target feature)
 
@@ -40,13 +40,13 @@ Four CSV files containing customer information as of February 1, 2020:
 
 
 
-2\. \*\*personal\_new.csv\*\* - customer demographics:
+2. **personal_new.csv** - customer demographics:
 
 &nbsp;  - `Dependents`, `SeniorCitizen`, `Partner`
 
 
 
-3\. \*\*internet\_new.csv\*\* - internet services:
+3. **internet_new.csv** - internet services:
 
 &nbsp;  - `InternetService` (DSL/Fiber optic)
 
@@ -54,63 +54,64 @@ Four CSV files containing customer information as of February 1, 2020:
 
 
 
-4\. \*\*phone\_new.csv\*\* - phone services:
+4. **phone_new.csv** - phone services:
 
 &nbsp;  - `MultipleLines`
 
 
 
-\## 🔍 Methodology
+## 🔍 Methodology
 
 
 
-\### Data Preparation
+### Data Preparation
 
-\- Merged datasets using `customerID`
+- Merged datasets using `customerID`
 
-\- Converted `EndDate` to binary target (1 = churned, 0 = active)
+- Converted `EndDate` to binary target (1 = churned, 0 = active)
 
-\- Created new feature `Months` (contract duration)
+- Created new feature `Months` (contract duration)
 
-\- Handled missing values and transformed categorical features
+- Handled missing values and transformed categorical features
 
-\- Removed highly correlated `TotalCharges` feature (MSE = 103.45 with `MonthlyCharges \* Months`)
+- Removed highly correlated `TotalCharges` feature (MSE = 103.45 with `MonthlyCharges * Months`)
 
 
 
-\### Modeling Approach
+### Modeling Approach
 
 Tested multiple models with cross-validation and focal loss to address class imbalance (only ~26% churn rate):
 
 
 
-\- DecisionTreeClassifier (ROC-AUC: 0.808)
+- DecisionTreeClassifier (ROC-AUC: 0.808)
 
-\- RandomForestClassifier (ROC-AUC: 0.834)
+- RandomForestClassifier (ROC-AUC: 0.834)
 
-\- LGBMClassifier with focal loss (ROC-AUC: 0.899)
+- LGBMClassifier with focal loss (ROC-AUC: 0.899)
 
-\- LogisticRegression (ROC-AUC: 0.757)
+- LogisticRegression (ROC-AUC: 0.757)
 
-\- Neural Network (ROC-AUC: 0.871)
-
-
-
-\## 📈 Results
+- Neural Network (ROC-AUC: 0.871)
 
 
 
-\*\*Best Model\*\*: LGBMClassifier with matched hyper-parameters.
+## 📈 Results
 
 
 
-\*\*Test Performance\*\*:
+**Best Model**: LGBMClassifier with matched hyper-parameters.
 
-\- ROC-AUC: 0.913
 
-\- Recall: 90% (correctly identifies 90% of customers planning to leave)
+
+**Test Performance**:
+
+- ROC-AUC: 0.913
+
+- Recall: 90% (correctly identifies 90% of customers planning to leave)
 
 
 
 The model successfully identifies high-risk customers, enabling targeted retention strategies while minimizing customer loss.
+
 
